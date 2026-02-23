@@ -1,0 +1,262 @@
+/* ===== RESET ===== */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+/* ===== FUNDO PARALLAX ===== */
+body {
+  font-family: Arial, sans-serif;
+  background: url('img/cptec.jpg') no-repeat center center fixed;
+  background-size: cover;
+  color: #eee;
+  position: relative;
+  overflow-x: hidden;
+}
+
+/* camada escura */
+body::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.75);
+  z-index: -1;
+  backdrop-filter: blur(2px);
+}
+
+/* ===== CABEÇALHO ===== */
+header {
+  background: rgba(0, 0, 0, 0.85);
+  color: #fff;
+  padding: 20px;
+  text-align: center;
+  font-size: 2rem;
+  font-weight: bold;
+  border-bottom: 3px solid #888;
+
+  /* novo efeito */
+  text-shadow: 0 0 10px rgba(255,255,255,0.5);
+  box-shadow: 0 0 20px rgba(255,255,255,0.15);
+  animation: headerGlow 3s ease-in-out infinite alternate;
+}
+
+@keyframes headerGlow {
+  from { box-shadow: 0 0 10px rgba(255,255,255,0.15); }
+  to { box-shadow: 0 0 25px rgba(255,255,255,0.3); }
+}
+
+/* ===== MENU ===== */
+nav {
+  background: rgba(95, 19, 19, 0.85);
+  display: flex;
+  justify-content: center;
+  gap: 30px;
+  padding: 15px 0;
+
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+
+  /* glass */
+  backdrop-filter: blur(10px);
+  box-shadow: 0 0 12px rgba(255,255,255,0.1);
+}
+
+nav a {
+  color: #ddd;
+  font-weight: bold;
+  text-decoration: none;
+  position: relative;
+  transition: 0.4s ease;
+  text-shadow: 0 0 6px rgba(0,0,0,0.6);
+  padding: 5px 10px;
+}
+
+/* underline animado */
+nav a::after {
+  content: "";
+  width: 0;
+  height: 3px;
+  background: #b71c1c;
+  position: absolute;
+  bottom: -4px;
+  left: 0;
+  transition: 0.35s;
+  border-radius: 6px;
+}
+
+nav a:hover {
+  color: #fff;
+  transform: translateY(-2px);
+  text-shadow: 0 0 12px rgba(255,255,255,0.6);
+}
+
+nav a:hover::after {
+  width: 100%;
+}
+
+/* ===== MAIN ===== */
+main {
+  margin: 40px auto;
+  padding: 40px;
+  max-width: 900px;
+  background: rgba(255, 255, 255, 0.15);
+  border: 1px solid rgba(255,255,255,0.25);
+  border-radius: 18px;
+  backdrop-filter: blur(14px);
+
+  /* nova animação */
+  animation: aparecer 1s ease, glowIn 1.2s ease, glassPulse 6s ease-in-out infinite;
+  box-shadow: 0 0 25px rgba(255,255,255,0.18);
+}
+
+/* fade suave */
+@keyframes aparecer {
+  from { opacity: 0; transform: translateY(20px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+/* brilho suave */
+@keyframes glowIn {
+  0% { box-shadow: 0 0 0 rgba(255,255,255,0); }
+  100% { box-shadow: 0 0 20px rgba(255,255,255,0.20); }
+}
+
+/* pulsação do vidro */
+@keyframes glassPulse {
+  0% { backdrop-filter: blur(14px); }
+  50% { backdrop-filter: blur(18px); }
+  100% { backdrop-filter: blur(14px); }
+}
+
+/* ===== GRID ===== */
+.linha-nomes {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 40px;
+}
+
+/* ===== BLOCO ===== */
+.bloco {
+  text-align: center;
+}
+
+/* ===== BOTÕES COM SUPER EFEITOS ===== */
+.palavra {
+  font-size: 26px;
+  font-weight: bold;
+  cursor: pointer;
+  user-select: none;
+
+  padding: 12px 25px;
+  background: rgba(95, 19, 19, 0.9);
+  color: #fff;
+
+  border: 2px solid #4d1111;
+  border-radius: 14px;
+
+  text-shadow: 0 0 6px rgba(0,0,0,0.6);
+  box-shadow:
+    0 0 12px rgba(0,0,0,0.5),
+    inset 0 0 10px rgba(255,255,255,0.25);
+
+  transition: 0.35s ease;
+
+  /* efeito 3D */
+  transform-style: preserve-3d;
+}
+
+/* hover premium */
+.palavra:hover {
+  background: #4d1111;
+  transform: translateY(-4px) scale(1.07);
+  box-shadow:
+    0 0 20px rgba(255,255,255,0.5),
+    0 10px 20px rgba(0,0,0,0.6),
+    inset 0 0 14px rgba(255,255,255,0.4);
+}
+
+/* clique */
+.palavra:active {
+  transform: scale(0.94);
+  box-shadow: 0 0 6px rgba(255,255,255,0.2);
+}
+
+/* ===== EFEITO LUZ QUE SEGUE O MOUSE ===== */
+.palavra::before {
+  content: "";
+  position: absolute;
+  inset: -40px;
+  background: radial-gradient(circle, rgba(255,255,255,0.18) 0%, transparent 60%);
+  opacity: 0;
+  transition: 0.4s;
+  pointer-events: none;
+}
+
+.palavra:hover::before {
+  opacity: 1;
+}
+
+/* ===== IMAGENS ===== */
+.imagem-container {
+  max-height: 0;
+  overflow: hidden;
+  opacity: 0;
+  transition: max-height 0.6s ease, opacity 0.6s ease;
+}
+
+.imagem-container.mostrar {
+  max-height: 400px;
+  opacity: 1;
+}
+
+/* glass + neon */
+.imagem-container img {
+  width: 260px;
+  border-radius: 16px;
+  margin-top: 20px;
+
+  background: rgba(255,255,255,0.12);
+  padding: 8px;
+  backdrop-filter: blur(5px);
+  border: 1px solid rgba(255,255,255,0.4);
+
+  box-shadow:
+    0 0 20px rgba(255,255,255,0.25),
+    0 0 10px rgba(0,0,0,0.5);
+}
+
+/* ===== CORES POR GRUPO ===== */
+.conteudo .palavra { background: #2e7d32; border-color: #1b5e20; }
+.conteudo .palavra:hover { background: #1b5e20; }
+
+.design .palavra { background: #1565c0; border-color: #0d47a1; }
+.design .palavra:hover { background: #0d47a1; }
+
+.desenvolvimento .palavra { background: #6a1b9a; border-color: #4a148c; }
+.desenvolvimento .palavra:hover { background: #4a148c; }
+
+.entrega .palavra { background: #c62828; border-color: #8e0000; }
+.entrega .palavra:hover { background: #8e0000; }
+
+/* ===== RESPONSIVO ===== */
+@media (max-width: 700px) {
+  .palavra {
+    font-size: 22px;
+    padding: 10px 18px;
+  }
+  .imagem-container img {
+    width: 210px;
+  }
+}
+
+@media (max-width: 480px) {
+  .linha-nomes { gap: 20px; }
+  .palavra {
+    font-size: 20px;
+    padding: 8px 16px;
+  }
+  .imagem-container img {
+    width: 180px;
+  }
+}
